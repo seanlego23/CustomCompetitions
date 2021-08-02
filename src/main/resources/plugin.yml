@@ -1,0 +1,9 @@
+name: CustomCompetitions
+version: ${project.version}
+main: io.github.seanlego23.customcompetitions.CustomCompetitions
+api-version: 1.17
+prefix: CC
+softdepend: [ WorldEdit, WorldGaurd, Vault ]
+authors: [ seanlego23 ]
+description: Allows the creation and customization of competitions and manages them.
+website: https://github.com/seanlego23/CustomCompetitions
