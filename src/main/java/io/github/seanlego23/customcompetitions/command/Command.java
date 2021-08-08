@@ -12,28 +12,43 @@ import java.lang.annotation.Target;
 public @interface Command {
 
     /**
-     * @return the name of the command
+     * @return the name of the command.
      */
-    String name() default "";
+    String name();
 
     /**
-     * @return the aliases of the command
+     * @return the aliases of the command.
      */
-    String[] aliases();
+    String[] aliases() default { };
 
     /**
-     * @return the permission needed to access this command
+     * @return the description of this command.
      */
-    Permission permission();
+    String desc();
 
     /**
-     * @return the usage of this command
+     * @return the usage of this command.
      */
-    String usage();
+    String use();
 
     /**
-     * @return the description of this command
+     * @return the command path of this command.
      */
-    String description();
+    String path();
+
+    /**
+     * @return the permission needed to access this command.
+     */
+    Permission perm();
+
+    /**
+     * @return if the method this annotates is an executor.
+     */
+    boolean exec() default false;
+
+    /**
+     * @return if the method this annotates is a tabCompleter.
+     */
+    boolean tab() default false;
 
 }
