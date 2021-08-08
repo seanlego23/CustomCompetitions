@@ -1,20 +1,17 @@
-package io.github.seanlego23.customcompetitions.commands;
+package io.github.seanlego23.customcompetitions.command;
 
-import io.github.seanlego23.customcompetitions.command.CommandExecutor;
-import io.github.seanlego23.customcompetitions.command.CommandInfo;
-import io.github.seanlego23.customcompetitions.command.TabCompleter;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
 
-public class CCCommand {
+public class CommandElement {
 
     private final String name;
     private final CommandInfo commandInfo;
     private CommandExecutor executor;
     private TabCompleter tabCompleter;
 
-    public CCCommand(String name, CommandInfo commandInfo, CommandExecutor executor, TabCompleter tabCompleter) {
+    public CommandElement(String name, CommandInfo commandInfo, CommandExecutor executor, TabCompleter tabCompleter) {
         this.name = name;
         this.commandInfo = commandInfo;
         this.executor = executor;
@@ -65,9 +62,9 @@ public class CCCommand {
     public boolean equals(Object obj) {
         if (obj == null)
             return false;
-        else if (!(obj instanceof CCCommand))
+        else if (!(obj instanceof CommandElement))
             return false;
         else
-            return ((CCCommand)obj).name.equalsIgnoreCase(name);
+            return ((CommandElement)obj).name.equalsIgnoreCase(name);
     }
 }
