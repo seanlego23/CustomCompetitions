@@ -53,7 +53,7 @@ public class CompetitionTimer {
      *
      * @return the amount of time left on this timer.
      */
-    public long getTimeLeft() {
+    public synchronized long getTimeLeft() {
         return timeLeft;
     }
 
@@ -62,7 +62,7 @@ public class CompetitionTimer {
      *
      * @return the new time left.
      */
-    public long subtractOne() {
+    public synchronized long subtractOne() {
         return timeLeft == 0 ? 0 : (timeLeft -= 1);
     }
 
@@ -71,7 +71,7 @@ public class CompetitionTimer {
      *
      * @return the new time left.
      */
-    public long addOne() {
+    public synchronized long addOne() {
         return timeLeft == Long.MAX_VALUE ? Long.MAX_VALUE : (timeLeft += 1);
     }
 
@@ -80,7 +80,7 @@ public class CompetitionTimer {
      *
      * @param time new time left.
      */
-    public void setTime(long time) {
+    public synchronized void setTime(long time) {
         if (time <= 0)
             timeLeft = 0;
         else
@@ -90,7 +90,7 @@ public class CompetitionTimer {
     /**
      * Resets the time left of this timer to the start time of this timer.
      */
-    public void reset() {
+    public synchronized void reset() {
         timeLeft = setTime;
     }
 
