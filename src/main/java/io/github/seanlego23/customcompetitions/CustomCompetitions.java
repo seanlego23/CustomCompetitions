@@ -7,6 +7,13 @@ public final class CustomCompetitions extends JavaPlugin {
     public CustomCompetitions() { }
 
     @Override
+    public void onLoad() {
+        super.onLoad();
+
+        this.saveDefaultConfig();
+    }
+
+    @Override
     public void onEnable() {
         // Plugin startup logic
 
