@@ -7,3 +7,29 @@ softdepend: [ WorldEdit, WorldGaurd, Vault ]
 authors: [ seanlego23 ]
 description: Allows the creation and customization of competitions and manages them.
 website: https://github.com/seanlego23/CustomCompetitions
+commands:
+   customcompetitions:
+      description: Main plugin commands.
+      aliases: cc
+      permission: customcompetitions.main
+      permission-message: You do not have permission to use this command.
+      usage: "Usage: /cc [info|reload]"
+   competitions:
+      description: Main command for competitions.
+      aliases: [ comp, ccc ]
+      permission: customcompetitions.competitions
+      permission-message: You do not have permission to use this command.
+      usage: "Usage: /comp"
+permission:
+   customcompetitions.*:
+      description: Allows access to all of CustomCompetitions commands.
+      default: op
+      children:
+         customcompetitions.main: true
+         customcompetitions.competitions: true
+   customcompetitions.main:
+      description: Allows access to the main CustomCompetitions' plugin commands.
+      default: op
+   customcompetitions.competitions:
+      description: Allows access to the competitions command.
+      default: op
