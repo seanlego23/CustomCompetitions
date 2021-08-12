@@ -1,4 +1,4 @@
-package io.github.seanlego23.customcompetitions.competitions.settings;
+package io.github.seanlego23.customcompetitions.competitions.settings.timer;
 
 /**
  * A timer to be used in a competition. A competition does not have to use timers.

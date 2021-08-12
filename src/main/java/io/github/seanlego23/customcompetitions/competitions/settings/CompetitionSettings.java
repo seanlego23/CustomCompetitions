@@ -1,5 +1,7 @@
 package io.github.seanlego23.customcompetitions.competitions.settings;
 
+import io.github.seanlego23.customcompetitions.competitions.settings.timer.CompetitionTimer;
+
 import java.util.List;
 
 public class CompetitionSettings {
