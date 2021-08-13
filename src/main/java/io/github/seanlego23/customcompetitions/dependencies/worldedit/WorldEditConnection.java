@@ -17,7 +17,7 @@ public class WorldEditConnection {
     private WorldEditPlugin worldEditPlugin;
     WorldEdit worldEdit;
 
-    WorldEditConnection(@NotNull Plugin plugin) {
+    public WorldEditConnection(@NotNull Plugin plugin) {
         this.connectingPlugin = plugin;
     }
 
