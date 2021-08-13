@@ -1,7 +1,13 @@
 package io.github.seanlego23.customcompetitions;
 
 import io.github.seanlego23.customcompetitions.competitions.CompetitionManager;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public final class CustomCompetitions extends JavaPlugin {
 
@@ -31,5 +37,18 @@ public final class CustomCompetitions extends JavaPlugin {
 
     public CompetitionManager getCompetitionManager() {
         return competitionManager;
+    }
+
+    @Override
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
+            @NotNull String[] args) {
+        return false;
+    }
+
+    @Nullable
+    @Override
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias,
+            @NotNull String[] args) {
+        return null;
     }
 }
