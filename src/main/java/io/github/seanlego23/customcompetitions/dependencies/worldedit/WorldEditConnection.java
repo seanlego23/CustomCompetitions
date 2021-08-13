@@ -8,6 +8,7 @@ import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.regions.Region;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 public class WorldEditConnection {
 
@@ -16,10 +17,7 @@ public class WorldEditConnection {
     private WorldEditPlugin worldEditPlugin;
     WorldEdit worldEdit;
 
-    WorldEditConnection(Plugin plugin) {
-        if (plugin == null) {
-            throw new RuntimeException("plugin must not be null.");
-        }
+    WorldEditConnection(@NotNull Plugin plugin) {
         this.connectingPlugin = plugin;
     }
 
@@ -29,11 +27,11 @@ public class WorldEditConnection {
             plugin = connectingPlugin.getServer().getPluginManager().getPlugin("FastAsyncWorldEdit");
         }
 
-        if (plugin == null) {
+        if (plugin == null)
             return null;
-        } else if (plugin instanceof WorldEditPlugin) {
-            return (WorldEditPlugin)plugin;
-        } else {
+        else if (plugin instanceof WorldEditPlugin)
+            return (WorldEditPlugin) plugin;
+        else {
             connectingPlugin.getLogger().warning("WorldEdit v" + plugin.getDescription().getVersion()
                                                  + " is incompatible with " +
                                                  connectingPlugin.getDescription().getName() + " v"
@@ -70,14 +68,15 @@ public class WorldEditConnection {
      *
      * @return true if current connected to the WorldEdit plugin.
      */
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isConnected() {
         return worldEditPlugin != null;
     }
 
     private Region getSelection(Player player) {
-        if (!isConnected()) {
+        if (!isConnected())
             throw new RuntimeException("WorldEdit connection is unavailable.");
-        }
+
         try {
             return worldEdit.getSessionManager().get(new BukkitPlayer(worldEditPlugin, player)).getSelection(
                     new BukkitWorld(player.getWorld()));
@@ -89,14 +88,9 @@ public class WorldEditConnection {
     /**
      * @return true if the player currently has a WorldEdit selection.
      */
-    public boolean isSelectionAvailable(Player player) {
-        if (player == null) {
-            throw new RuntimeException("player must not be null.");
-        }
-
-        if (!isConnected()) {
+    public boolean isSelectionAvailable(@NotNull Player player) {
+        if (!isConnected())
             throw new RuntimeException("WorldEdit connection is unavailable.");
-        }
 
         return getSelection(player) != null;
     }
