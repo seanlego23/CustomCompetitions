@@ -40,11 +40,6 @@ public class WorldEditConnection {
         }
     }
 
-    /**
-     * Attempts to connect to the WorldEdit plugin.
-     *
-     * @return true if the WorldEdit plugin is available and able to be interfaced with.
-     */
     boolean connect() {
         if (!isConnected()) {
             worldEditPlugin = retrieveWorldEditPluginFromServer();
@@ -63,11 +58,6 @@ public class WorldEditConnection {
         this.worldEdit = null;
     }
 
-    /**
-     * Tests the connection to the WorldEdit plugin.
-     *
-     * @return true if current connected to the WorldEdit plugin.
-     */
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isConnected() {
         return worldEditPlugin != null;
@@ -85,9 +75,6 @@ public class WorldEditConnection {
         }
     }
 
-    /**
-     * @return true if the player currently has a WorldEdit selection.
-     */
     public boolean isSelectionAvailable(@NotNull Player player) {
         if (!isConnected())
             throw new RuntimeException("WorldEdit connection is unavailable.");

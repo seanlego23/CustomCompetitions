@@ -31,11 +31,6 @@ public class WorldGuardConnection {
         }
     }
 
-    /**
-     * Attempts to connect to the WorldEdit plugin.
-     *
-     * @return true if the WorldEdit plugin is available and able to be interfaced with.
-     */
     boolean connect() {
         if (!isConnected()) {
             worldGuardPlugin = retrieveWorldGuardPluginFromServer();
@@ -54,11 +49,6 @@ public class WorldGuardConnection {
         worldGuard = null;
     }
 
-    /**
-     * Tests the connection to the WorldEdit plugin.
-     *
-     * @return true if current connected to the WorldEdit plugin.
-     */
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isConnected() {
         return worldGuardPlugin != null;
