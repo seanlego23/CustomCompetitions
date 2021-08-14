@@ -1,4 +1,4 @@
-package io.github.seanlego23.customcompetitions;
+package io.github.seanlego23.customcompetitions.config;
 
 public class CCConfig {
 
