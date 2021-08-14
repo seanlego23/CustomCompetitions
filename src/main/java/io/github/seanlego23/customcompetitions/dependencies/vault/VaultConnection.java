@@ -60,14 +60,18 @@ public class VaultConnection {
 
         @EventHandler
         private void vaultEnabled(PluginEnableEvent event) {
-            setupEconomy();
-            setupPermissions();
+            if (event.getPlugin().getName().equals("Vault")) {
+                setupEconomy();
+                setupPermissions();
+            }
         }
 
         @EventHandler
         private void vaultDisabled(PluginDisableEvent event) {
-            economy = null;
-            permission = null;
+            if (event.getPlugin().getName().equals("Vault")) {
+                economy = null;
+                permission = null;
+            }
         }
 
     }
