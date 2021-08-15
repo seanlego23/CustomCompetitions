@@ -42,6 +42,16 @@ public final class CustomCompetitions extends JavaPlugin {
         // Plugin shutdown logic
     }
 
+    @Override
+    public void saveConfig() {
+        super.saveConfig();
+    }
+
+    @Override
+    public void saveDefaultConfig() {
+        super.saveDefaultConfig();
+    }
+
     public CompetitionManager getCompetitionManager() {
         return competitionManager;
     }
