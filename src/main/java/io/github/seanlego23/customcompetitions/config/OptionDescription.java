@@ -19,4 +19,11 @@ public @interface OptionDescription {
      */
     String desc();
 
+    /**
+     * Number of blank lines before the description.
+     *
+     * @return number of blank lines before the description.
+     */
+    int numBlankLinesBefore() default 1;
+
 }
