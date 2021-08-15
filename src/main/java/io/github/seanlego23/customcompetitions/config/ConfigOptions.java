@@ -22,7 +22,7 @@ import java.lang.annotation.Target;
  *     <li><i>author</i>: the author's name</li>
  *     <li><i>version</i>: the version number</li>
  *     <li><i>plugin-name</i>: the name of this plugin</li>
- *     <li>&lt;characters&gt;: a pattern of characters</li>
+ *     <li>&lt;characters&gt;: a pattern of characters (<b>USE</b> quotation marks if there are spaces)</li>
  * </ul>
  * Flags:
  * <ul>
@@ -73,32 +73,10 @@ public @interface ConfigOptions {
 
     /**
      * Format string for the header of this config.
-     * The version of CustomCompetitions will always
-     * appear before the header with one line space between.
      *
      * @return format string for the header of this config.
      */
     String header();
-
-    /**
-     * Whether to include the author in the config. Goes before
-     * the header:
-     *
-     * <p>#Author: {author}
-     *
-     * @return whether to include the author of this plugin in the config.
-     */
-    boolean includeAuthor() default false;
-
-    /**
-     * Whether to include the version in the config. Goes before
-     * the header:
-     *
-     * <p>#Version: {version}
-     *
-     * @return whether to include the version of this plugin in the config.
-     */
-    boolean includeVersion() default true;
 
     int numLinesAfterHeader() default 1;
 
