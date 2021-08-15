@@ -43,6 +43,12 @@ public @interface Option {
      * private String root_name_serialize(Object);
      * private Object root_name_deserialize(String);
      *
+     * <p><b>Note:</b> Primitive, String, Class&lt;?&gt;,
+     * List&lt;?&gt; and Array types do not need conversion
+     * methods. Lists and Arrays will need a conversion
+     * method if their type is not a Primitive, String,
+     * or Class&lt;?&gt; type.
+     *
      * @return the root name of the conversion methods.
      */
     String conversionMethod() default "";
