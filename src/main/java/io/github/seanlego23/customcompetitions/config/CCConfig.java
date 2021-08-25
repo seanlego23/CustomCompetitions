@@ -15,14 +15,15 @@ package io.github.seanlego23.customcompetitions.config;
 public class CCConfig {
 
     @ConfigSection(name = "WorldEdit")
-    @Option(alias = "searchLength", section = "WorldEdit", path = "biomeRegion")
-    @OptionDescription(desc = "How many chunks in each direction to search before giving up.")
-    public int maxBiomeRegionChunkSearch;
+    @Option(alias = "maxSearchTime", section = "WorldEdit", path = "biomeRegion")
+    @OptionDescription(desc = "Maximum amount of time to search for an entire biome before aborting.")
+    public static long maxBiomeRegionSearchTime;
 
-    @Option(alias = "maximumSize", section = "WorldEdit", path = "biomeRegion")
-    @OptionDescription(desc = "Maximum amount of chunks that a biomeRegion can have.") //TODO: Find out good amount
-    public int maxBiomeRegionChunks;
+    @Option(section = "WorldEdit", path = "biomeRegion.maxSearchTime")
+    @OptionDescription(desc = "If true and the region is partially defined when the maxSearchTime is reached, the " +
+                              "region will continue to be searched, instead of aborting.")
+    public static boolean ignoreIfPartiallyDefined;
 
-    public CCConfig() { }
+    private CCConfig() { }
 
 }
