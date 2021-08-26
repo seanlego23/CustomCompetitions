@@ -2,6 +2,7 @@ package io.github.seanlego23.customcompetitions;
 
 import io.github.seanlego23.customcompetitions.competitions.CompetitionManager;
 import io.github.seanlego23.customcompetitions.dependencies.vault.VaultConnection;
+import io.github.seanlego23.customcompetitions.dependencies.worldedit.BiomeRegionCreator;
 import io.github.seanlego23.customcompetitions.dependencies.worldedit.WorldEditConnection;
 import io.github.seanlego23.customcompetitions.dependencies.worldguard.WorldGuardConnection;
 import org.bukkit.command.Command;
@@ -19,6 +20,7 @@ public final class CustomCompetitions extends JavaPlugin {
     private final WorldEditConnection worldEditConnection = new WorldEditConnection(this);
     private final WorldGuardConnection worldGuardConnection = new WorldGuardConnection(this);
     private final VaultConnection vaultConnection = new VaultConnection(this);
+    private final BiomeRegionCreator biomeRegionCreator = new BiomeRegionCreator(this);
 
     public CustomCompetitions() {
 
@@ -66,6 +68,10 @@ public final class CustomCompetitions extends JavaPlugin {
 
     public VaultConnection getVaultConnection() {
         return vaultConnection;
+    }
+
+    public BiomeRegionCreator getBiomeRegionCreator() {
+        return biomeRegionCreator;
     }
 
     @Override
