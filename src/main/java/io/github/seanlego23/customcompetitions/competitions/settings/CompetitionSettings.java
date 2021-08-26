@@ -6,8 +6,8 @@ import java.util.List;
 
 public class CompetitionSettings {
 
-    private CompetitionTimer before;
-    private CompetitionTimer between;
+    private CompetitionTimer beforeCompetition;
+    private CompetitionTimer betweenReoccurrences;
     private boolean reoccur;
     private List<CompetitionStage> stages;
 

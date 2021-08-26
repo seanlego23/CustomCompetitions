@@ -4,9 +4,9 @@ import io.github.seanlego23.customcompetitions.competitions.settings.timer.Compe
 
 public class CompetitionStage {
 
-    private CompetitionTimer pre;
-    private CompetitionTimer inter;
-    private CompetitionTimer post;
+    private CompetitionTimer preStageTimer;
+    private CompetitionTimer stageTimer;
+    private CompetitionTimer postStageTimer;
 
     public CompetitionStage() {
 
