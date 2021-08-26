@@ -1,5 +1,6 @@
 package io.github.seanlego23.customcompetitions.dependencies.worldedit;
 
+import com.sk89q.worldedit.IncompleteRegionException;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldedit.math.BlockVector2;
 import com.sk89q.worldedit.math.BlockVector3;
@@ -165,10 +166,14 @@ public class BiomeRegion extends AbstractRegion {
             }
         }
 
-        public BiomeRegion build() throws BiomeRegionException {
+        public boolean isBuilt() {
+            return built;
+        }
+
+        public BiomeRegion build() throws BiomeRegionException, IncompleteRegionException {
             synchronized (definedLock) {
                 if (!defined)
-                    throw new BiomeRegionException("Biome region is not defined yet.");
+                    throw new IncompleteRegionException();
                 if (built)
                     throw new BiomeRegionException("Biome has already been built.");
                 built = true;
