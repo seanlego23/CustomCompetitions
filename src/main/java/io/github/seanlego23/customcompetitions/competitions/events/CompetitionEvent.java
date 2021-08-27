@@ -72,7 +72,7 @@ public enum CompetitionEvent {
     PROJECTILE_HIT("onProjectileHit"),
     ;
 
-    private String name;
+    private final String name;
 
     //TODO: Add event class as parameter
     CompetitionEvent(String name) {
