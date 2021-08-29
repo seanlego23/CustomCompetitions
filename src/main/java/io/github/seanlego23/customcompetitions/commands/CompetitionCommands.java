@@ -4,7 +4,7 @@ import com.sk89q.intake.Command;
 import com.sk89q.intake.Require;
 import io.github.seanlego23.customcompetitions.competitions.Competition;
 import io.github.seanlego23.customcompetitions.competitions.settings.CompetitionSettings;
-import io.github.seanlego23.customcompetitions.user.User;
+import io.github.seanlego23.customcompetitions.recipients.user.User;
 
 public class CompetitionCommands {
 

@@ -3,10 +3,12 @@ package io.github.seanlego23.customcompetitions.dependencies.worldedit;
 import com.sk89q.worldedit.IncompleteRegionException;
 import com.sk89q.worldedit.util.Location;
 import io.github.seanlego23.customcompetitions.CustomCompetitions;
-import io.github.seanlego23.customcompetitions.user.User;
+import io.github.seanlego23.customcompetitions.recipients.user.User;
 import org.bukkit.scheduler.BukkitTask;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class BiomeRegionCreator {
 
