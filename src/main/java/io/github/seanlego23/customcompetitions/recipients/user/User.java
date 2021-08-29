@@ -1,12 +1,13 @@
 package io.github.seanlego23.customcompetitions.recipients.user;
 
+import io.github.seanlego23.customcompetitions.recipients.Recipient;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-public class User {
+public class User implements Recipient {
     private final Player player;
     private final String name;
 
