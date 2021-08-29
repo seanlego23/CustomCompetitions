@@ -1,7 +1,7 @@
 package io.github.seanlego23.customcompetitions.competitions;
 
 import io.github.seanlego23.customcompetitions.competitions.settings.CompetitionSettings;
-import io.github.seanlego23.customcompetitions.user.User;
+import io.github.seanlego23.customcompetitions.recipients.user.User;
 
 public class Competition {
 
