@@ -23,4 +23,6 @@ public interface Recipient {
 
     void sendMessage(ChatMessageType type, UUID sender, BaseComponent... components);
 
+    void sendTitle(BaseComponent[] title, BaseComponent[] subTitle);
+
 }

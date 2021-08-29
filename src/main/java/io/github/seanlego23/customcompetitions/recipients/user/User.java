@@ -24,35 +24,48 @@ public class User implements Recipient {
         return player.hasPermission(perm);
     }
 
+    @Override
     public void sendMessage(BaseComponent component) {
 
     }
 
+    @Override
     public void sendMessage(BaseComponent... components) {
 
     }
 
+    @Override
     public void sendMessage(UUID sender, BaseComponent component) {
 
     }
 
+    @Override
     public void sendMessage(UUID sender, BaseComponent... components) {
 
     }
 
+    @Override
     public void sendMessage(ChatMessageType type, BaseComponent component) {
 
     }
 
+    @Override
     public void sendMessage(ChatMessageType type, BaseComponent... components) {
 
     }
 
+    @Override
     public void sendMessage(ChatMessageType type, UUID sender, BaseComponent component) {
 
     }
 
+    @Override
     public void sendMessage(ChatMessageType type, UUID sender, BaseComponent... components) {
+
+    }
+
+    @Override
+    public void sendTitle(BaseComponent[] title, BaseComponent[] subTitle) {
 
     }
 
