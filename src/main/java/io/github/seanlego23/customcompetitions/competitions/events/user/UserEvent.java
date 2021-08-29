@@ -1,6 +1,6 @@
 package io.github.seanlego23.customcompetitions.competitions.events.user;
 
-import io.github.seanlego23.customcompetitions.user.User;
+import io.github.seanlego23.customcompetitions.recipients.user.User;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
