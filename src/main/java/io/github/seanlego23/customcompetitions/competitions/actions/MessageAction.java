@@ -2,6 +2,7 @@ package io.github.seanlego23.customcompetitions.competitions.actions;
 
 import io.github.seanlego23.customcompetitions.competitions.Competition;
 import io.github.seanlego23.customcompetitions.recipients.Recipient;
+import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,6 +31,17 @@ public class MessageAction implements Action {
         Recipient recipient = (Recipient) objects[0];
         MessageType messageType = (MessageType) objects[1];
         BaseComponent[] components = (BaseComponent[]) objects[2];
+
+        switch (messageType) {
+            case TITLE -> {
+                BaseComponent[] subtitleComponents = null;
+                if (objects.length == 4)
+                    subtitleComponents = (BaseComponent[])objects[3];
+                recipient.sendTitle(components, subtitleComponents);
+            }
+            case ACTION_BAR -> recipient.sendMessage(ChatMessageType.ACTION_BAR, components);
+            case CHAT -> recipient.sendMessage(components);
+        }
 
         return ActionResult.SUCCESS;
     }
