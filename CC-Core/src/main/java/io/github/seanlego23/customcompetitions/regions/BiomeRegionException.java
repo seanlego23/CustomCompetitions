@@ -1,4 +1,4 @@
-package io.github.seanlego23.customcompetitions.dependencies.worldedit;
+package io.github.seanlego23.customcompetitions.regions;
 
 public class BiomeRegionException extends Exception {
 

@@ -1,4 +1,4 @@
-package io.github.seanlego23.customcompetitions.dependencies.worldedit;
+package io.github.seanlego23.customcompetitions.regions;
 
 import com.sk89q.worldedit.IncompleteRegionException;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;

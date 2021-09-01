@@ -1,10 +1,9 @@
-package io.github.seanlego23.customcompetitions.dependencies.worldedit;
+package io.github.seanlego23.customcompetitions.regions;
 
 import com.sk89q.worldedit.IncompleteRegionException;
 import com.sk89q.worldedit.util.Location;
 import io.github.seanlego23.customcompetitions.CustomCompetitions;
 import io.github.seanlego23.customcompetitions.recipients.user.User;
-import org.bukkit.scheduler.BukkitTask;
 
 import java.util.Comparator;
 import java.util.Map;
@@ -12,13 +11,13 @@ import java.util.TreeMap;
 
 public class BiomeRegionCreator {
 
-    private final CustomCompetitions plugin;
+//    private final CustomCompetitions plugin;
     private final Map<User, BiomeRegionData> biomeRegions = new TreeMap<>(Comparator.comparing(User::getName));
-    private final BukkitTask bukkitTask;
+//    private final BukkitTask bukkitTask;
 
     public BiomeRegionCreator(CustomCompetitions plugin) {
-        this.plugin = plugin;
-        bukkitTask = plugin.getServer().getScheduler().runTaskTimer(plugin, new BiomeRegionStatusChecker(), 1, 1);
+//        this.plugin = plugin;
+//        bukkitTask = plugin.getServer().getScheduler().runTaskTimer(plugin, new BiomeRegionStatusChecker(), 1, 1);
     }
 
     private record BiomeRegionData(long time, BiomeRegionCreatorThread thread) {
@@ -86,7 +85,7 @@ public class BiomeRegionCreator {
     }
 
     public void cancelAll() {
-        bukkitTask.cancel();
+//        bukkitTask.cancel();
     }
 
 }
