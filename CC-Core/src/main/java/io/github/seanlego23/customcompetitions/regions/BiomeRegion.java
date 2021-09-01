@@ -1,6 +1,6 @@
 package io.github.seanlego23.customcompetitions.regions;
 
-import io.github.seanlego23.customcompetitions.util.math.Location;
+import io.github.seanlego23.customcompetitions.util.Location;
 import io.github.seanlego23.customcompetitions.util.math.Vector2D;
 import io.github.seanlego23.customcompetitions.util.math.Vector3D;
 
@@ -19,19 +19,19 @@ public class BiomeRegion extends AbstractRegion {
 //    private BiomeType biomeType;
 
     public BiomeRegion() {
-//        super(null);
+        super(null);
         externalBorder = new TreeMap<>();
         internalHoles = new TreeMap<>();
     }
 
     public BiomeRegion(World world) {
-//        super(world);
+        super(world);
         externalBorder = new TreeMap<>();
         internalHoles = new TreeMap<>();
     }
 
     public BiomeRegion(BiomeRegion region) {
-//        super(region.world);
+        super(region.world);
 //        biomeType = region.biomeType;
         externalBorder = region.externalBorder;
         internalHoles = region.internalHoles;
@@ -41,7 +41,7 @@ public class BiomeRegion extends AbstractRegion {
 
     private BiomeRegion(/*BiomeType type,*/ World world, TreeMap<Integer, FlatPolygonRegion> external,
             TreeMap<Integer, List<FlatPolygonRegion>> internal, Vector3D minimum, Vector3D maximum) {
-//        super(world);
+        super(world);
 //        biomeType = type;
         externalBorder = external;
         internalHoles = internal;
@@ -309,27 +309,27 @@ public class BiomeRegion extends AbstractRegion {
 
     }
 
-    //@Override
-    public Vector3D getMinimumPoint() {
+    @Override
+    public Vector3D getMinimum() {
         return min;
     }
 
-    //@Override
-    public Vector3D getMaximumPoint() {
+    @Override
+    public Vector3D getMaximum() {
         return max;
     }
 
-/*
+
     @SuppressWarnings("RedundantThrows")
     @Override
-    public void expand(Vector3D... changes) throws RegionOperationException {
+    public void expand(Vector3D... changes) {
     }
 
     @SuppressWarnings("RedundantThrows")
     @Override
-    public void contract(Vector3D... changes) throws RegionOperationException {
+    public void contract(Vector3D... changes) {
     }
-*/
+
 
 /*    private static class BiomeRegionIterator implements Iterator<Vector3D> {
 
@@ -420,9 +420,9 @@ public class BiomeRegion extends AbstractRegion {
         return (BiomeRegion)super.clone();
     }*/
 
-/*    @Override
+    @Override
     public boolean contains(Vector3D position) {
-        if (!position.containedWithin(min, max))
+/*        if (!position.containedWithin(min, max))
             return false;
         int posY = position.getY();
         FlatPolygonRegion region = externalBorder.get(posY);
@@ -432,7 +432,7 @@ public class BiomeRegion extends AbstractRegion {
         for (FlatPolygonRegion hole : holes) {
             if (hole.contains(position))
                 return false;
-        }
+        }*/
         return true;
-    }*/
+    }
 }
