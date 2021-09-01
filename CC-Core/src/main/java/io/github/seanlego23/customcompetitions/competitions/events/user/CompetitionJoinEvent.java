@@ -1,13 +1,13 @@
 package io.github.seanlego23.customcompetitions.competitions.events.user;
 
 import io.github.seanlego23.customcompetitions.competitions.Competition;
+import io.github.seanlego23.customcompetitions.competitions.events.CancellableEvent;
 import io.github.seanlego23.customcompetitions.recipients.user.User;
-import org.bukkit.event.Cancellable;
 
 /**
  * This event is called just before a User joins a competition.
  */
-public class CompetitionJoinEvent extends UserEvent implements Cancellable {
+public class CompetitionJoinEvent extends UserEvent implements CancellableEvent {
 
     private boolean cancel = false;
     protected final Competition competition;
