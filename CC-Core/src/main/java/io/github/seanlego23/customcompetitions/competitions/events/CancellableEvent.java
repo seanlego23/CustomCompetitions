@@ -2,8 +2,8 @@ package io.github.seanlego23.customcompetitions.competitions.events;
 
 public interface CancellableEvent {
 
-    boolean isCanceled();
+    boolean isCancelled();
 
-    void setCanceled(boolean cancel);
+    void setCancelled(boolean cancel);
 
 }
