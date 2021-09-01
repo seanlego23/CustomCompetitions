@@ -1,9 +1,8 @@
 package io.github.seanlego23.customcompetitions.regions;
 
-import com.sk89q.worldedit.IncompleteRegionException;
-import com.sk89q.worldedit.util.Location;
 import io.github.seanlego23.customcompetitions.CustomCompetitions;
 import io.github.seanlego23.customcompetitions.recipients.user.User;
+import io.github.seanlego23.customcompetitions.util.math.Location;
 
 import java.util.Comparator;
 import java.util.Map;
@@ -51,11 +50,11 @@ public class BiomeRegionCreator {
 
         @Override
         public void run() {
-            try {
+            /*try {
                 builder = new BiomeRegion.BiomeRegionBuilder(location);
             } catch (BiomeRegionException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
 
         public boolean isDefined() {
@@ -64,13 +63,13 @@ public class BiomeRegionCreator {
             return builder.isDefined();
         }
 
-        public BiomeRegion getRegion() throws IncompleteRegionException, BiomeRegionException {
+/*        public BiomeRegion getRegion() throws IncompleteRegionException, BiomeRegionException {
             if (!isDefined())
                 throw new IncompleteRegionException();
             if (!builder.isBuilt())
                 return builder.build();
             return null;
-        }
+        }*/
 
     }
 
