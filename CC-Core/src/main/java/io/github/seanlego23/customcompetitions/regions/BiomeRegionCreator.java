@@ -2,7 +2,7 @@ package io.github.seanlego23.customcompetitions.regions;
 
 import io.github.seanlego23.customcompetitions.CustomCompetitions;
 import io.github.seanlego23.customcompetitions.recipients.user.User;
-import io.github.seanlego23.customcompetitions.util.math.Location;
+import io.github.seanlego23.customcompetitions.util.Location;
 
 import java.util.Comparator;
 import java.util.Map;
