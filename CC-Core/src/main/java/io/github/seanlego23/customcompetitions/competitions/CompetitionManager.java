@@ -1,7 +1,7 @@
 package io.github.seanlego23.customcompetitions.competitions;
 
-import io.github.seanlego23.customcompetitions.competitions.location.World;
 import io.github.seanlego23.customcompetitions.competitions.settings.timer.CompetitionTimer;
+import io.github.seanlego23.customcompetitions.regions.World;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
