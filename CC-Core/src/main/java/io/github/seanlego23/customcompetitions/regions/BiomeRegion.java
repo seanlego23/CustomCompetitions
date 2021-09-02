@@ -1,5 +1,6 @@
 package io.github.seanlego23.customcompetitions.regions;
 
+import io.github.seanlego23.customcompetitions.registries.Biome;
 import io.github.seanlego23.customcompetitions.util.Location;
 import io.github.seanlego23.customcompetitions.util.math.Vector2D;
 import io.github.seanlego23.customcompetitions.util.math.Vector3D;
@@ -16,7 +17,7 @@ public class BiomeRegion extends AbstractRegion {
     private Vector3D min;
     private Vector3D max;
 
-//    private BiomeType biomeType;
+    private Biome biome;
 
     public BiomeRegion() {
         super(null);
@@ -32,17 +33,17 @@ public class BiomeRegion extends AbstractRegion {
 
     public BiomeRegion(BiomeRegion region) {
         super(region.world);
-//        biomeType = region.biomeType;
+        biome = region.biome;
         externalBorder = region.externalBorder;
         internalHoles = region.internalHoles;
         min = region.min;
         max = region.max;
     }
 
-    private BiomeRegion(/*BiomeType type,*/ World world, TreeMap<Integer, FlatPolygonRegion> external,
+    private BiomeRegion(Biome type, World world, TreeMap<Integer, FlatPolygonRegion> external,
             TreeMap<Integer, List<FlatPolygonRegion>> internal, Vector3D minimum, Vector3D maximum) {
         super(world);
-//        biomeType = type;
+        biome = type;
         externalBorder = external;
         internalHoles = internal;
         min = minimum;
@@ -51,7 +52,7 @@ public class BiomeRegion extends AbstractRegion {
 
     public static class BiomeRegionBuilder {
 
-    //    private final BiomeType biomeType;
+//        private final Biome biome;
 //        private final World world;
         private final SortedMap<Integer, FlatPolygonRegion> external = new ConcurrentSkipListMap<>();
         private final SortedMap<Integer, List<FlatPolygonRegion>> internal = new ConcurrentSkipListMap<>();
