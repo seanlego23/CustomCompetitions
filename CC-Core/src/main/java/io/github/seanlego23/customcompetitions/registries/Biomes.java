@@ -1,5 +1,7 @@
 package io.github.seanlego23.customcompetitions.registries;
 
+import io.github.seanlego23.customcompetitions.util.Biome;
+
 import java.util.ArrayList;
 import java.util.List;
 

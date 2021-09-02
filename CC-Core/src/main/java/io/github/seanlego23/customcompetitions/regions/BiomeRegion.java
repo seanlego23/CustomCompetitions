@@ -1,6 +1,6 @@
 package io.github.seanlego23.customcompetitions.regions;
 
-import io.github.seanlego23.customcompetitions.registries.Biome;
+import io.github.seanlego23.customcompetitions.util.Biome;
 import io.github.seanlego23.customcompetitions.util.Location;
 import io.github.seanlego23.customcompetitions.util.math.Vector2D;
 import io.github.seanlego23.customcompetitions.util.math.Vector3D;

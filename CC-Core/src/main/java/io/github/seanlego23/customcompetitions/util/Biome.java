@@ -1,4 +1,4 @@
-package io.github.seanlego23.customcompetitions.registries;
+package io.github.seanlego23.customcompetitions.util;
 
 import java.util.Locale;
 
