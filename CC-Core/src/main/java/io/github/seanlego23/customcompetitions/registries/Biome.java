@@ -1,5 +1,7 @@
 package io.github.seanlego23.customcompetitions.registries;
 
+import java.util.Locale;
+
 public enum Biome {
 
     BADLANDS,
@@ -83,6 +85,11 @@ public enum Biome {
     WARPED_FOREST,
     WOODED_BADLANDS_PLATEAU,
     WOODED_HILLS,
-    WOODED_MOUNTAINS,
+    WOODED_MOUNTAINS;
 
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase(Locale.ROOT);
+    }
 }
