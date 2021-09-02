@@ -67,16 +67,16 @@ public class BiomeRegion extends AbstractRegion {
         private final Comparator<Vector2D> Vector2DComparator = (o1, o2) -> {
             if (o1.equals(o2))
                 return 0;
-            /*double length1 = o1.length();
+            double length1 = o1.length();
             double length2 = o2.length();
             if (length1 < length2)
                 return -1;
             else if (length1 > length2)
                 return 1;
-            double angle1 = Math.atan2(o1.getZ(), o1.getX());
-            double angle2 = Math.atan2(o2.getZ(), o2.getX());
+            double angle1 = Math.atan2(o1.getBlockZ(), o1.getBlockX());
+            double angle2 = Math.atan2(o2.getBlockZ(), o2.getBlockX());
             if (angle1 < angle2)
-                return -1;*/
+                return -1;
             return 1;
         };
 
