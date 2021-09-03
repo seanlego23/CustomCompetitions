@@ -65,8 +65,16 @@ public record Vector3D(double x, double y, double z) {
         return new Vector3D(s * x, s * y, s * z);
     }
 
+    public Vector3D multiply(Vector3D o) {
+        return new Vector3D(x * o.x, y * o.y, z * o.z);
+    }
+
     public Vector3D divide(double s) {
         return new Vector3D(x / s, y / s, z / s);
+    }
+
+    public Vector3D divide(Vector3D o) {
+        return new Vector3D(x / o.x, y / o.y, z / o.z);
     }
 
     public Vector2D toVector2D() {
