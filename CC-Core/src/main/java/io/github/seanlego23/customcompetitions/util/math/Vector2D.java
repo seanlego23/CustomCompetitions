@@ -2,6 +2,11 @@ package io.github.seanlego23.customcompetitions.util.math;
 
 public record Vector2D(double x, double z) {
 
+    public static Vector2D ZERO = new Vector2D(0, 0);
+    public static Vector2D ONE_X = new Vector2D(1, 0);
+    public static Vector2D ONE_Z = new Vector2D(0, 1);
+    public static Vector2D ONE = new Vector2D(1, 1);
+
     public int getBlockX() {
         return (int) x;
     }
