@@ -52,12 +52,12 @@ public class BiomeRegion extends AbstractRegion {
 
     public static class BiomeRegionBuilder {
 
-//        private final Biome biome;
-//        private final World world;
+        private final Biome biome;
+        private final World world;
         private final SortedMap<Integer, FlatPolygonRegion> external = new ConcurrentSkipListMap<>();
         private final SortedMap<Integer, List<FlatPolygonRegion>> internal = new ConcurrentSkipListMap<>();
-//        private final Vector3D minimum;
-//        private final Vector3D maximum;
+        private final Vector3D minimum;
+        private final Vector3D maximum;
 
         private final boolean defined;
         private boolean built = false;
@@ -81,19 +81,18 @@ public class BiomeRegion extends AbstractRegion {
         };
 
         public BiomeRegionBuilder(Location location) throws BiomeRegionException {
-            /*world = (World)location.getExtent();
-            biomeType = BukkitAdapter.adapt(BukkitAdapter.adapt(location).getBlock().getBiome());
+            world = location.world();
+            biome = world.getBiome(location);
 
-            org.bukkit.World bukkitWorld = BukkitAdapter.adapt(world);
-            int maxHeight = bukkitWorld.getMaxHeight();
-            int minHeight = bukkitWorld.getMinHeight();
+            int maxHeight = world.getMaxHeight();
+            int minHeight = world.getMinHeight();
             int startY = location.getBlockY();
 
             final boolean[] exceptionThrown = {false};
             Thread searchHereAbove = new Thread(() -> {
                 for (int i = 0; i + startY < maxHeight; i++) {
                     try {
-                        if (!searchLevel(location.setY(startY + i)))
+                        if (!searchLevel(location.withY(startY + i)))
                             break;
                     } catch (BiomeRegionException e) {
                         exceptionThrown[0] = true;
@@ -104,7 +103,7 @@ public class BiomeRegion extends AbstractRegion {
             Thread searchBelow = new Thread(() -> {
                for (int i = 1; startY - i >= minHeight; i++) {
                    try {
-                       if (!searchLevel(location.setY(startY - i)))
+                       if (!searchLevel(location.withY(startY - i)))
                            break;
                    } catch (BiomeRegionException e) {
                        exceptionThrown[0] = true;
@@ -133,20 +132,20 @@ public class BiomeRegion extends AbstractRegion {
             int xMax = Integer.MIN_VALUE;
             int zMax = Integer.MIN_VALUE;
             for (FlatPolygonRegion region : external.values()) {
-                Vector3D min = region.getMinimumPoint();
+                Vector3D min = region.getMinimum();
                 if (min.getBlockX() < xMin)
                     xMin = min.getBlockX();
                 if (min.getBlockZ() < zMin)
                     zMin = min.getBlockZ();
-                Vector3D max = region.getMaximumPoint();
+                Vector3D max = region.getMaximum();
                 if (max.getBlockX() > xMax)
                     xMax = max.getBlockX();
                 if (max.getBlockZ() > zMax)
                     zMax = max.getBlockZ();
             }
 
-            minimum = Vector3D.at(xMin, external.firstKey(), zMin);
-            maximum = Vector3D.at(xMax, external.lastKey(), zMax);*/
+            minimum = new Vector3D(xMin, external.firstKey(), zMin);
+            maximum = new Vector3D(xMax, external.lastKey(), zMax);
 
             synchronized (definedLock) {
                 defined = true;
@@ -165,29 +164,28 @@ public class BiomeRegion extends AbstractRegion {
 
         public BiomeRegion build() throws BiomeRegionException/*, IncompleteRegionException*/ {
             synchronized (definedLock) {
-                /*if (!defined)
-                    throw new IncompleteRegionException();
+                if (!defined)
+                    throw new BiomeRegionException("Biome is not defined");
                 if (built)
                     throw new BiomeRegionException("Biome has already been built.");
                 built = true;
-                return new BiomeRegion(biomeType, world, new TreeMap<>(external), new TreeMap<>(internal),
-                        minimum, maximum);*/
+                return new BiomeRegion(biome, world, new TreeMap<>(external), new TreeMap<>(internal),
+                        minimum, maximum);
             }
-            return null;
         }
 
         @SuppressWarnings("BooleanMethodIsAlwaysInverted")
         private boolean searchLevel(Location loc) throws BiomeRegionException {
             SortedSet<Vector2D> points = new ConcurrentSkipListSet<>(Vector2DComparator);
             SortedSet<Vector2D> boundaryPoints = new ConcurrentSkipListSet<>(Vector2DComparator);
-/*            int locY = loc.getBlockY();
+            int locY = loc.getBlockY();
 
             int x = loc.getBlockX();
             int z = loc.getBlockZ();
-            Thread searchThread1 = new Thread(() -> searchNext(points, boundaryPoints, loc.setX(x + 1), biomeType));
-            Thread searchThread2 = new Thread(() -> searchNext(points, boundaryPoints, loc.setZ(z + 1), biomeType));
-            Thread searchThread3 = new Thread(() -> searchNext(points, boundaryPoints, loc.setX(x - 1), biomeType));
-            Thread searchThread4 = new Thread(() -> searchNext(points, boundaryPoints, loc.setZ(z - 1), biomeType));
+            Thread searchThread1 = new Thread(() -> searchNext(points, boundaryPoints, loc.withX(x + 1), biome));
+            Thread searchThread2 = new Thread(() -> searchNext(points, boundaryPoints, loc.withZ(z + 1), biome));
+            Thread searchThread3 = new Thread(() -> searchNext(points, boundaryPoints, loc.withX(x - 1), biome));
+            Thread searchThread4 = new Thread(() -> searchNext(points, boundaryPoints, loc.withZ(z - 1), biome));
             searchThread1.start();
             searchThread2.start();
             searchThread3.start();
@@ -214,32 +212,31 @@ public class BiomeRegion extends AbstractRegion {
                 internalBoundaries.add(internalBoundary);
             }
 
-            FlatPolygonRegion externalRegion = new FlatPolygonRegion(this.world, new ArrayList<>(externalBoundary),
-                    locY, locY);
+            FlatPolygonRegion externalRegion = new FlatPolygonRegion(world, new ArrayList<>(externalBoundary), locY,
+                    locY);
             external.put(locY, externalRegion);
 
             List<FlatPolygonRegion> internalHoleList = new ArrayList<>();
             for (SortedSet<Vector2D> inter : internalBoundaries)
-                internalHoleList.add(new FlatPolygonRegion(this.world, new ArrayList<>(inter), locY, locY));
-            internal.put(locY, internalHoleList);*/
+                internalHoleList.add(new FlatPolygonRegion(world, new ArrayList<>(inter), locY, locY));
+            internal.put(locY, internalHoleList);
 
             return true;
         }
 
         //Basic boundary fill algorithm modified for arbitrary boundary.
-        private void searchNext(SortedSet<Vector2D> points, SortedSet<Vector2D> boundary, Location pt/*,
-                BiomeType bt*/) {
-/*            if (BukkitAdapter.adapt(BukkitAdapter.adapt(pt).getBlock().getBiome()).equals(bt)) {
-                if (points.add(pt.toVector().toVector2().toBlockPoint())) {
+        private void searchNext(SortedSet<Vector2D> points, SortedSet<Vector2D> boundary, Location pt, Biome bt) {
+            if (world.getBiome(pt) == bt) {
+                if (points.add(pt.toVector3D().toVector2D())) {
                     int x = pt.getBlockX();
                     int z = pt.getBlockZ();
-                    searchNext(points, boundary, pt.setX(x + 1), bt);
-                    searchNext(points, boundary, pt.setZ(z + 1), bt);
-                    searchNext(points, boundary, pt.setX(x - 1), bt);
-                    searchNext(points, boundary, pt.setZ(z - 1), bt);
+                    searchNext(points, boundary, pt.withX(x + 1), bt);
+                    searchNext(points, boundary, pt.withZ(z + 1), bt);
+                    searchNext(points, boundary, pt.withX(x - 1), bt);
+                    searchNext(points, boundary, pt.withZ(z - 1), bt);
                 }
             } else
-                boundary.add(pt.toVector().toVector2().toBlockPoint());*/
+                boundary.add(pt.toVector3D().toVector2D());
         }
 
         private void createExternalBoundary(Vector2D start, SortedSet<Vector2D> boundary,
