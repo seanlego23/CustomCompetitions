@@ -1,6 +1,7 @@
 package io.github.seanlego23.customcompetitions.regions;
 
 import io.github.seanlego23.customcompetitions.util.Biome;
+import io.github.seanlego23.customcompetitions.util.Direction;
 import io.github.seanlego23.customcompetitions.util.Location;
 import io.github.seanlego23.customcompetitions.util.math.Vector2D;
 import io.github.seanlego23.customcompetitions.util.math.Vector3D;
@@ -241,10 +242,10 @@ public class BiomeRegion extends AbstractRegion {
 
         private void createExternalBoundary(Vector2D start, SortedSet<Vector2D> boundary,
                 SortedSet<Vector2D> points) {
-            /*Vector2D xDirection = start.getX() < 0 ? Direction.WEST.toBlockVector().toVector2D() :
-                                      Direction.EAST.toBlockVector().toVector2D();
-            Vector2D zDirection = start.getZ() < 0 ? Direction.NORTH.toBlockVector().toVector2D() :
-                                      Direction.SOUTH.toBlockVector().toVector2D();
+            Vector2D xDirection = start.x() < 0 ? Direction.WEST.toVector3D().toVector2D() :
+                                  Direction.EAST.toVector3D().toVector2D();
+            Vector2D zDirection = start.z() < 0 ? Direction.NORTH.toVector3D().toVector2D() :
+                                      Direction.SOUTH.toVector3D().toVector2D();
             points.add(start);
 
             boundary.remove(start.add(xDirection));
@@ -264,30 +265,34 @@ public class BiomeRegion extends AbstractRegion {
                 if (boundary.remove(next.add(boundaryDirection))) {
                     if (boundary.remove(next.add(insideDirection))) {
                         boundaryDirection = insideDirection;
-                        insideDirection = insideDirection.transform2D(-90, 0, 0, 0, 0);
+                        insideDirection = insideDirection.transform(-90, 0, 0, 0, 0);
                     }
                 } else {
                     boundaryDirection = insideDirection.multiply(-1);
-                    insideDirection = insideDirection.transform2D(90, 0, 0, 0, 0);
+                    insideDirection = insideDirection.transform(90, 0, 0, 0, 0);
                 }
                 points.add(next);
                 next = next.add(insideDirection);
-            }*/
+            }
         }
 
         private void createInternalBoundary(Vector2D start, int y, SortedSet<Vector2D> boundary,
                 SortedSet<Vector2D> points, Comparator<Vector2D> comp) throws BiomeRegionException {
-            /*Location loc = new Location(this.world, start.getX(), y, start.getZ());
-            BiomeType internalBiome = BukkitAdapter.adapt(BukkitAdapter.adapt(loc).getBlock().getBiome());
+            Location loc = new Location(world, start.x(), y, start.z());
+            Biome internalBiome = world.getBiome(loc);
             SortedSet<Vector2D> internal = new ConcurrentSkipListSet<>(comp);
             SortedSet<Vector2D> internalBoundary = new ConcurrentSkipListSet<>(comp);
 
             int x = start.getBlockX();
             int z = start.getBlockZ();
-            Thread searchThread1 = new Thread(() -> searchNext(internal, internalBoundary, loc.setX(x + 1), internalBiome));
-            Thread searchThread2 = new Thread(() -> searchNext(internal, internalBoundary, loc.setZ(z + 1), internalBiome));
-            Thread searchThread3 = new Thread(() -> searchNext(internal, internalBoundary, loc.setX(x - 1), internalBiome));
-            Thread searchThread4 = new Thread(() -> searchNext(internal, internalBoundary, loc.setZ(z - 1), internalBiome));
+            Thread searchThread1 = new Thread(() -> searchNext(internal, internalBoundary, loc.withX(x + 1),
+                    internalBiome));
+            Thread searchThread2 = new Thread(() -> searchNext(internal, internalBoundary, loc.withZ(z + 1),
+                    internalBiome));
+            Thread searchThread3 = new Thread(() -> searchNext(internal, internalBoundary, loc.withX(x - 1),
+                    internalBiome));
+            Thread searchThread4 = new Thread(() -> searchNext(internal, internalBoundary, loc.withZ(z - 1),
+                    internalBiome));
             searchThread1.start();
             searchThread2.start();
             searchThread3.start();
@@ -302,7 +307,7 @@ public class BiomeRegion extends AbstractRegion {
             }
 
             createExternalBoundary(points.last(), internalBoundary, points);
-            boundary.removeAll(points);*/
+            boundary.removeAll(points);
         }
 
     }
@@ -329,7 +334,7 @@ public class BiomeRegion extends AbstractRegion {
     }
 
 
-/*    private static class BiomeRegionIterator implements Iterator<Vector3D> {
+    private static class BiomeRegionIterator implements Iterator<Vector3D> {
 
         private final BiomeRegion region;
         private final int maxY;
@@ -343,7 +348,7 @@ public class BiomeRegion extends AbstractRegion {
             maxY = region.externalBorder.lastKey();
             posY = region.externalBorder.firstKey();
 
-            //current = region.externalBorder.get(posY).iterator();
+            current = region.externalBorder.get(posY).iterator();
             currentHoles = region.internalHoles.get(posY);
             nextPoint = findNext();
         }
@@ -366,7 +371,7 @@ public class BiomeRegion extends AbstractRegion {
         private Vector3D findNext() {
             if (!current.hasNext() && posY < maxY) {
                 ++posY;
-                //current = region.externalBorder.get(posY).iterator();
+                current = region.externalBorder.get(posY).iterator();
                 currentHoles = region.internalHoles.get(posY);
             }
             if (current.hasNext()) {
@@ -376,7 +381,7 @@ public class BiomeRegion extends AbstractRegion {
                     if (nextTry == null) {
                         if (posY < maxY) {
                             ++posY;
-                            //current = region.externalBorder.get(posY).iterator();
+                            current = region.externalBorder.get(posY).iterator();
                             currentHoles = region.internalHoles.get(posY);
                         } else
                             break;
@@ -392,10 +397,10 @@ public class BiomeRegion extends AbstractRegion {
             Vector3D nextTry = current.next();
             while (nextTry != null) {
                 for (FlatPolygonRegion rg : currentHoles) {
-                    *//*if (rg.contains(nextTry)) {
+                    if (rg.contains(nextTry)) {
                         nextTry = null;
                         break;
-                    }*//*
+                    }
                 }
                 if (nextTry == null) {
                     if (current.hasNext())
@@ -405,24 +410,23 @@ public class BiomeRegion extends AbstractRegion {
             }
             return nextTry;
         }
-
     }
 
     @Override
     public Iterator<Vector3D> iterator() {
         return new BiomeRegionIterator(this);
-    }*/
+    }
 
-/*    @Override
+    @Override
     public BiomeRegion clone() {
         return (BiomeRegion)super.clone();
-    }*/
+    }
 
     @Override
     public boolean contains(Vector3D position) {
-/*        if (!position.containedWithin(min, max))
+        if (!position.containedWithin(min, max))
             return false;
-        int posY = position.getY();
+        int posY = (int)position.y();
         FlatPolygonRegion region = externalBorder.get(posY);
         if (!region.contains(position))
             return false;
@@ -430,7 +434,7 @@ public class BiomeRegion extends AbstractRegion {
         for (FlatPolygonRegion hole : holes) {
             if (hole.contains(position))
                 return false;
-        }*/
+        }
         return true;
     }
 }
