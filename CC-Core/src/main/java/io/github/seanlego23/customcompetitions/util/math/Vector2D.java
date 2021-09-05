@@ -68,6 +68,17 @@ public record Vector2D(double x, double z) {
         return new Vector2D(x / o.x, z / o.z);
     }
 
+    public Vector2D transform(double angle, double aboutX, double aboutZ, double translateX, double translateZ) {
+        double rad = Math.toRadians(angle);
+        double x = this.x - aboutX;
+        double z = this.z - aboutZ;
+        double cos = Math.cos(rad);
+        double sin = Math.sin(rad);
+        double x2 = x * cos - z * sin;
+        double z2 = x * sin - z * cos;
+        return new Vector2D(x2 + aboutX + translateX, z2 + aboutZ + translateZ);
+    }
+
     public Vector3D toVector3D() {
         return new Vector3D(x, 0, z);
     }
