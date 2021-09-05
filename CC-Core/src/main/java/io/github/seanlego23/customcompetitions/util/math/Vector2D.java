@@ -68,6 +68,10 @@ public record Vector2D(double x, double z) {
         return new Vector2D(x / o.x, z / o.z);
     }
 
+    public boolean containedWithin(Vector2D min, Vector2D max) {
+        return x > min.x && x < max.x && z > min.z && z < max.z;
+    }
+
     public Vector2D transform(double angle, double aboutX, double aboutZ, double translateX, double translateZ) {
         double rad = Math.toRadians(angle);
         double x = this.x - aboutX;

@@ -77,6 +77,10 @@ public record Vector3D(double x, double y, double z) {
         return new Vector3D(x / o.x, y / o.y, z / o.z);
     }
 
+    public boolean containedWithin(Vector3D min, Vector3D max) {
+        return x > min.x && x < max.x && y > min.y && y < max.y && z > min.z && z < max.z;
+    }
+
     public Vector3D transform(Vector3D angles, Vector3D pivot, Vector3D translate) {
         Quaternion r = new Quaternion(angles);
         Vector3D v2 = subtract(pivot);
