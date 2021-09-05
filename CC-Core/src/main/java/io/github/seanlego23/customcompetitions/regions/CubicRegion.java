@@ -1,7 +1,10 @@
 package io.github.seanlego23.customcompetitions.regions;
 
 import io.github.seanlego23.customcompetitions.util.math.Vector3D;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Iterator;
 
 public class CubicRegion extends AbstractRegion {
 
@@ -49,5 +52,16 @@ public class CubicRegion extends AbstractRegion {
     @Override
     public boolean contains(Vector3D point) {
         return false;
+    }
+
+    @NotNull
+    @Override
+    public Iterator<Vector3D> iterator() {
+        return null;
+    }
+
+    @Override
+    protected CubicRegion clone() {
+        return (CubicRegion)super.clone();
     }
 }

@@ -2,9 +2,11 @@ package io.github.seanlego23.customcompetitions.regions;
 
 import io.github.seanlego23.customcompetitions.util.math.Vector2D;
 import io.github.seanlego23.customcompetitions.util.math.Vector3D;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class FlatPolygonRegion extends AbstractRegion {
@@ -54,5 +56,16 @@ public class FlatPolygonRegion extends AbstractRegion {
     @Override
     public boolean contains(Vector3D point) {
         return false;
+    }
+
+    @NotNull
+    @Override
+    public Iterator<Vector3D> iterator() {
+        return null;
+    }
+
+    @Override
+    protected FlatPolygonRegion clone() {
+        return (FlatPolygonRegion)super.clone();
     }
 }
