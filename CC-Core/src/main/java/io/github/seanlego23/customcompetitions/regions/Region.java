@@ -2,7 +2,7 @@ package io.github.seanlego23.customcompetitions.regions;
 
 import io.github.seanlego23.customcompetitions.util.math.Vector3D;
 
-public interface Region {
+public interface Region extends Iterable<Vector3D> {
 
     World getWorld();
 
