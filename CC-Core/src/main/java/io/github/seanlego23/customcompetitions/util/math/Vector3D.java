@@ -77,6 +77,14 @@ public record Vector3D(double x, double y, double z) {
         return new Vector3D(x / o.x, y / o.y, z / o.z);
     }
 
+    public Vector3D transform(Vector3D angles, Vector3D pivot, Vector3D translate) {
+        Quaternion r = new Quaternion(angles);
+        Vector3D v2 = subtract(pivot);
+        Quaternion v = new Quaternion(0, v2.x, v2.y, v2.z);
+        Quaternion result = r.hamiltonProduct(v).hamiltonProduct(r.conjugate());
+        return result.getVectorPart().add(pivot).add(translate);
+    }
+
     public Vector2D toVector2D() {
         return new Vector2D(x, z);
     }
